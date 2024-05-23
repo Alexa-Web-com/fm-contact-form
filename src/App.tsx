@@ -8,53 +8,83 @@ function App() {
 
   return (
     <main>
-      <h1>Contact Us</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div>
-            <label htmlFor="firstName">
-              First Name<span>*</span>
+      <section>
+        <h1>Contact Us</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="elem_container">
+            <div className="input_container">
+              <label htmlFor="firstName">
+                First Name<sup>*</sup>
+              </label>
+              <input
+                className="rounded"
+                type="text"
+                id="firstName"
+                name="firstName"
+              />
+            </div>
+            <div className="input_container">
+              <label htmlFor="lastName">
+                Last Name<sup>*</sup>
+              </label>
+              <input
+                className="rounded"
+                type="text"
+                id="lastName"
+                name="lastName"
+              />
+            </div>
+          </div>
+          <div className="input_container">
+            <label htmlFor="emailAddress">
+              Email Address<sup>*</sup>
             </label>
-            <input type="text" id="firstName" name="firstName"></input>
+            <input
+              className="rounded"
+              type="email"
+              id="emailAddress"
+              name="emailAddress"
+            />
           </div>
           <div>
-            <label htmlFor="lastName">
-              Last Name<span>*</span>
+            <p>
+              Query Type<sup>*</sup>
+            </p>
+          </div>
+          <ul className="elem_container">
+            <li className="rounded">
+              <input type="radio" id="generalEnquiry" name="queryType" />
+              <label htmlFor="generalEnquiry">General Enquiry</label>
+            </li>
+            <li className="rounded">
+              <input type="radio" id="supportRequest" name="queryType" />
+              <label htmlFor="supportRequest">Support Request</label>
+            </li>
+          </ul>
+          <div className="input_container">
+            <label htmlFor="message">
+              Message<sup>*</sup>
             </label>
-            <input type="text" id="lastName" name="lastName"></input>
+            <textarea
+              className="rounded"
+              id="message"
+              name="message"
+            ></textarea>
           </div>
-        </div>
-        <div>
-          <label htmlFor="emailAddress">
-            Email Address<span>*</span>
-          </label>
-          <input type="email" id="emailAddress" name="emailAddress"></input>
-        </div>
-        <div>
-          Query Type<span>*</span>
-        </div>
-        <div>
-          <div>
-            <input type="radio" id="generalEnquiry" name="queryType"></input>
-            <label htmlFor="generalEnquiry">General Enquiry</label>
+          <div className="checkbox_container">
+            <input
+              className="checkbox_container_input"
+              type="checkbox"
+              id="consent"
+              name="consent"
+            />
+            <label htmlFor="consent">
+              I consent to being contacted by the team<sup>*</sup>
+            </label>
           </div>
-          <div>
-            <input type="radio" id="supportRequest" name="queryType"></input>
-            <label htmlFor="supportRequest">Support Request</label>
-          </div>
-        </div>
-        <div>
-          <label htmlFor="message">
-            Message<span>*</span>
-          </label>
-          <textarea id="message" name="message" rows={3}></textarea>
-        </div>
-        <input type="checkbox" id="consent" name="consent"></input>
-        <label htmlFor="consent">
-          I consent to being contacted by the team<span>*</span>
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
     </main>
   );
 }
