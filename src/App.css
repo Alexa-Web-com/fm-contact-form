@@ -14,126 +14,116 @@
 } */
 
 :root {
-  --text-primary: #2b4246;
-  --text-secondary: #0095ff;
-  --background-primary: #ffffff;
-  --background-secondary: #dff1e7;
-  --button-primary: #0c7d69;
-  --button-secondary: #054539;
-  --border-primary: #87a3a6;
+  --text-primary-color: #2b4246;
+  --text-secondary-color: #0095ff;
+  --main-color: #ffffff;
+  --secondary-color: #0c7d69;
+  --background-color: #dff1e7;
+  --button-hover-color: #052822;
+  --border-color: #87a3a6;
 }
 
 * {
-  color: var(--text-primary, darkslategray);
+  color: var(--text-primary-color, darkslategray);
   font-family: Karla;
   font-weight: 400;
   font-size: 14px;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background-color: var(--background-secondary, lightgreen);
+  background-color: var(--background-color, lightgreen);
   display: flex;
   justify-content: center;
 }
 
 main {
-  background-color: var(--background-primary, white);
   border-radius: 12px;
   width: 100vw;
-  max-width: 600px;
+  max-width: 624px;
 }
 
 section {
+  background-color: var(--main-color, white);
   padding: 36px;
+  margin: 12px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 32px;
 }
 
 form {
   margin-top: 16px;
   display: flex;
   flex-direction: column;
-  width: 100%;
-}
-
-h1 {
-  font-weight: 700;
-  font-size: 32px;
-  margin: 0;
 }
 
 sup {
-  color: var(--text-secondary, blue);
+  color: var(--text-secondary-color, blue);
   margin-left: 5px;
   font-size: 14px;
   vertical-align: bottom;
 }
 
-input {
-  height: 40px;
+input,
+textarea {
   outline: none;
+  height: 34px;
+  padding: 6px 8px;
 }
 
 input:focus,
-input:hover {
-  border: solid 1px var(--button-primary, green);
-}
-
-p {
-  margin: 16px 0 0 0;
-}
-
-ul {
-  margin: 0;
-  padding-inline-start: 0;
-
-  li {
-    flex: 1;
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    padding-left: 16px;
-    margin: 10px 0 0 0;
-
-    label {
-      padding: 0 0 0 10px;
-      font-size: 16px;
-    }
-
-    input {
-      margin: 0;
-    }
-
-    input:hover {
-      cursor: pointer;
-    }
-
-    input:checked {
-      accent-color: var(--button-primary, green);
-    }
-  }
-
-  li:has(input:checked) {
-    border: solid 1px var(--button-primary, green);
-  }
-}
-
-li:hover {
-  border: solid 1px var(--button-primary, green);
+input:hover,
+textarea:hover,
+textarea:focus {
+  border: solid 1px var(--secondary-color, green);
 }
 
 textarea {
   resize: none;
-  height: 96px;
-  outline: none;
+  height: 90px;
 }
 
-textarea:hover,
-textarea:focus {
-  border: solid 1px var(--button-primary, green);
+p {
+  margin-top: 16px;
+}
+
+li {
+  flex: 1;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  padding: 6px 0 6px 16px;
+  margin: 10px 0 0 0;
+
+  label {
+    font-size: 16px;
+    padding-left: 10px;
+  }
+
+  input:hover {
+    cursor: pointer;
+  }
+
+  input:checked {
+    accent-color: var(--secondary-color, green);
+  }
+}
+
+li:has(input:checked) {
+  border: solid 1px var(--secondary-color, green);
+}
+
+li:hover {
+  border: solid 1px var(--secondary-color, green);
 }
 
 button {
-  color: var(--background-primary, white);
-  background-color: var(--button-primary, green);
+  color: var(--main-color, white);
+  background-color: var(--secondary-color, green);
   border: none;
   padding: 12px 0;
   border-radius: 6px;
@@ -141,19 +131,18 @@ button {
 }
 
 button:hover {
-  background-color: var(--button-secondary, darkgreen);
+  background-color: var(--button-hover-color, darkgreen);
   cursor: pointer;
 }
 
-.rounded {
+.rounded_border {
   border-radius: 6px;
-  border: solid 1px var(--border-primary, gray);
+  border: solid 1px var(--border-color, gray);
 }
 
 .elem_container {
   display: flex;
   justify-content: space-between;
-  row-gap: 0;
   column-gap: 12px;
 }
 
@@ -174,16 +163,16 @@ button:hover {
   margin: 32px 0;
 
   label {
-    margin: 0 0 0 8px;
+    margin-left: 14px;
   }
 
   input {
-    margin: 0 6px 0px 4px;
+    margin-left: 4px;
     transform: scale(1.2);
   }
 
   input:checked {
-    accent-color: var(--button-primary, green);
+    accent-color: var(--button-hover-color, green);
   }
 
   input:hover {
@@ -191,10 +180,9 @@ button:hover {
   }
 }
 
-@media (width <= 600px) {
+@media (width <= 560px) {
   .elem_container {
     flex-direction: column;
-    row-gap: 12px;
-    column-gap: 0;
+    row-gap: 2px;
   }
 }
