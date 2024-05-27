@@ -49,7 +49,7 @@ function App() {
   const isFormValid = () => {
     let dataValid = true;
 
-    // getting error messages
+    // getting error messages in case of invalid entry, in opposite - getting empty string
     const getFirstNameValidationMsg = lengthValidationMsg(firstName, 2);
     const getLastNameValidationMsg = lengthValidationMsg(lastName, 2);
     const getEmailValidationMsg = isEmailValid(email);
