@@ -82,7 +82,7 @@ li {
   list-style-type: none;
   display: flex;
   align-items: center;
-  padding: 6px 0 6px 16px;
+  padding-left: 16px;
   margin: 10px 0 0 0;
 
   label {
@@ -150,9 +150,8 @@ button:hover {
 
 .checkbox_container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 18px;
-  height: 18px;
 
   label {
     margin-left: 14px;

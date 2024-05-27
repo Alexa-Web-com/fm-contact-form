@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-
-const emailIsValid = (email: string) => {
-  return /\S+@\S+\.\S+/.test(email);
-};
+import { isEmailValid } from "./helpers/isEmailValid";
+import { lengthValidationMsg } from "./helpers/lengthValidationMsg";
 
 function App() {
+  // initial state setup for form fields
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -13,74 +12,79 @@ function App() {
   const [message, setMessage] = useState<string>("");
   const [consent, setConsent] = useState<boolean>(false);
 
-  const [isFirstNameValid, setIsFirstNameValid] = useState<boolean>(true);
-  const [isLastNameValid, setIsLastNameValid] = useState<boolean>(true);
-  const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
-  const [isQueryTypeValid, setIsQueryTypeValid] = useState<boolean>(true);
-  const [isMessageValid, setIsMessageValid] = useState<boolean>(true);
-  const [isConsentValid, setIsConsentValid] = useState<boolean>(true);
+  // initial state setup for error messages for form fields
+  const [firstNameValidMsg, setFirstNameValidMsg] = useState<string>("");
+  const [lastNameValidMsg, setLastNameValidMsg] = useState<string>("");
+  const [EmailValidMsg, setEmailValidMsg] = useState<string>("");
+  const [queryTypeValidMsg, setQueryTypeValidMsg] = useState<string>("");
+  const [messageValidMsg, setMessageValidMsg] = useState<string>("");
+  const [consentValidMsg, setConsentValidMsg] = useState<string>("");
 
+  // state for checking if the form has been correctly submitted
   const [isSubmittedForm, setIsSubmittedForm] = useState<boolean>(false);
 
+  // hooks clearing error message state when new data is entered or corrected in form fields
   useEffect(() => {
-    setIsFirstNameValid(true);
+    setFirstNameValidMsg("");
   }, [firstName]);
   useEffect(() => {
-    setIsLastNameValid(true);
+    setLastNameValidMsg("");
   }, [lastName]);
   useEffect(() => {
-    if (emailIsValid(email)) {
-      setIsEmailValid(true);
-    }
+    setEmailValidMsg("");
   }, [email]);
   useEffect(() => {
-    setIsQueryTypeValid(true);
+    setQueryTypeValidMsg("");
   }, [queryType]);
   useEffect(() => {
     if (message.length > 5) {
-      setIsMessageValid(true);
+      setMessageValidMsg("");
     }
   }, [message]);
   useEffect(() => {
-    setIsConsentValid(true);
+    setConsentValidMsg("");
   }, [consent]);
 
+  // checking if all form fields are correctly filled
   const isFormValid = () => {
     let dataValid = true;
 
-    if (firstName.length < 3) {
-      dataValid = false;
-      setIsFirstNameValid(false);
-    }
+    // getting error messages
+    const getFirstNameValidationMsg = lengthValidationMsg(firstName, 2);
+    const getLastNameValidationMsg = lengthValidationMsg(lastName, 2);
+    const getEmailValidationMsg = isEmailValid(email);
+    const getMessageValidationMsg = lengthValidationMsg(message, 6);
 
-    if (lastName.length < 3) {
-      dataValid = false;
-      setIsLastNameValid(false);
-    }
-
-    if (!emailIsValid(email)) {
-      dataValid = false;
-      setIsEmailValid(false);
-    }
+    // setting error messages
+    setFirstNameValidMsg(getFirstNameValidationMsg);
+    setLastNameValidMsg(getLastNameValidationMsg);
+    setEmailValidMsg(getEmailValidationMsg);
+    setMessageValidMsg(getMessageValidationMsg);
 
     if (queryType === "") {
-      dataValid = false;
-      setIsQueryTypeValid(false);
-    }
-
-    if (message.length < 6) {
-      dataValid = false;
-      setIsMessageValid(false);
+      setQueryTypeValidMsg("Please choose the query type");
     }
 
     if (!consent) {
+      setConsentValidMsg("Your consent is required!");
+    }
+
+    // checking if there are any reasons to set dataValid flag to false
+    if (
+      !!getFirstNameValidationMsg ||
+      !!getLastNameValidationMsg ||
+      !!getEmailValidationMsg ||
+      !!getMessageValidationMsg ||
+      queryType === "" ||
+      !consent
+    ) {
       dataValid = false;
-      setIsConsentValid(false);
     }
 
     return dataValid;
   };
 
+  // function handling the form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -88,11 +92,20 @@ function App() {
       return;
     }
 
+    showConfirmation();
+    clearForm();
+  };
+
+  // function changing the isSubmittedForm state in order to show confirmation of successful form submission
+  const showConfirmation = () => {
     setIsSubmittedForm(true);
     setTimeout(() => {
       setIsSubmittedForm(false);
-    }, 1000);
+    }, 1200);
+  };
 
+  // function clearing the form
+  const clearForm = () => {
     setFirstName("");
     setLastName("");
     setEmail("");
@@ -120,7 +133,9 @@ function App() {
                 </label>
                 <input
                   className={
-                    isFirstNameValid ? "rounded_border" : "rounded_border_error"
+                    firstNameValidMsg
+                      ? "rounded_border_error"
+                      : "rounded_border"
                   }
                   type="text"
                   id="firstName"
@@ -128,9 +143,7 @@ function App() {
                   onChange={(e) => setFirstName(e.target.value)}
                   value={firstName}
                 />
-                <p className="error_message">
-                  {isFirstNameValid ? "" : "This field is required"}
-                </p>
+                <p className="error_message">{firstNameValidMsg}</p>
               </div>
               <div className="input_container">
                 <label htmlFor="lastName">
@@ -138,7 +151,7 @@ function App() {
                 </label>
                 <input
                   className={
-                    isLastNameValid ? "rounded_border" : "rounded_border_error"
+                    lastNameValidMsg ? "rounded_border_error" : "rounded_border"
                   }
                   type="text"
                   id="lastName"
@@ -146,9 +159,7 @@ function App() {
                   onChange={(e) => setLastName(e.target.value)}
                   value={lastName}
                 />
-                <p className="error_message">
-                  {isLastNameValid ? "" : "This field is required"}
-                </p>
+                <p className="error_message">{lastNameValidMsg}</p>
               </div>
             </div>
             <div className="input_container">
@@ -157,7 +168,7 @@ function App() {
               </label>
               <input
                 className={
-                  isEmailValid ? "rounded_border" : "rounded_border_error"
+                  EmailValidMsg ? "rounded_border_error" : "rounded_border"
                 }
                 type="email"
                 id="emailAddress"
@@ -165,9 +176,7 @@ function App() {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
               />
-              <p className="error_message">
-                {isEmailValid ? "" : "Please enter a valid email address"}
-              </p>
+              <p className="error_message">{EmailValidMsg}</p>
             </div>
             <div>
               <p>
@@ -177,7 +186,7 @@ function App() {
             <ul className="elem_container">
               <li
                 className={
-                  isQueryTypeValid ? "rounded_border" : "rounded_border_error"
+                  queryTypeValidMsg ? "rounded_border_error" : "rounded_border"
                 }
               >
                 <input
@@ -192,7 +201,7 @@ function App() {
               </li>
               <li
                 className={
-                  isQueryTypeValid ? "rounded_border" : "rounded_border_error"
+                  queryTypeValidMsg ? "rounded_border_error" : "rounded_border"
                 }
               >
                 <input
@@ -206,31 +215,27 @@ function App() {
                 <label htmlFor="supportRequest">Support Request</label>
               </li>
             </ul>
-            <p className="error_message">
-              {isQueryTypeValid ? "" : "Please choose the query type"}
-            </p>
+            <p className="error_message">{queryTypeValidMsg}</p>
             <div className="input_container">
               <label htmlFor="message">
                 Message<sup>*</sup>
               </label>
               <textarea
                 className={
-                  isMessageValid ? "rounded_border" : "rounded_border_error"
+                  messageValidMsg ? "rounded_border_error" : "rounded_border"
                 }
                 id="message"
                 name="message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               ></textarea>
-              <p className="error_message">
-                {isMessageValid ? "" : "You need to enter 6 characters minimum"}
-              </p>
+              <p className="error_message">{messageValidMsg}</p>
             </div>
             <div
               className={
-                isConsentValid
-                  ? "checkbox_container"
-                  : "checkbox_container checkbox_container_error"
+                consentValidMsg
+                  ? "checkbox_container checkbox_container_error"
+                  : "checkbox_container"
               }
             >
               <input
@@ -245,9 +250,7 @@ function App() {
                 I consent to being contacted by the team<sup>*</sup>
               </label>
             </div>
-            <p className="error_message">
-              {isConsentValid ? "" : "Your consent is required!"}
-            </p>
+            <p className="error_message">{consentValidMsg}</p>
             <button type="submit">Submit</button>
           </form>
         </section>
