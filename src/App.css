@@ -1,18 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
 
-/* @font-face {
-  font-family: Karla;
-  src: url("../public/fonts/static/Karla-Regular.ttf") format("woff");
-  font-style: normal;
-  font-weight: 400;
-}
-@font-face {
-  font-family: Karla;
-  src: url("../public/fonts/static/Karla-Bold.ttf") format("woff");
-  font-style: normal;
-  font-weight: 700;
-} */
-
 :root {
   --text-primary-color: #2b4246;
   --text-secondary-color: #0095ff;
@@ -21,6 +8,7 @@
   --background-color: #dff1e7;
   --button-hover-color: #052822;
   --border-color: #87a3a6;
+  --error-color: #ff0000;
 }
 
 * {
@@ -30,6 +18,7 @@
   font-size: 14px;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -39,12 +28,12 @@ body {
 }
 
 main {
-  border-radius: 12px;
   width: 100vw;
   max-width: 624px;
 }
 
 section {
+  border-radius: 12px;
   background-color: var(--main-color, white);
   padding: 36px;
   margin: 12px;
@@ -53,6 +42,7 @@ section {
 h1 {
   font-weight: 700;
   font-size: 32px;
+  margin-bottom: 26px;
 }
 
 form {
@@ -71,7 +61,7 @@ sup {
 input,
 textarea {
   outline: none;
-  height: 34px;
+  height: 42px;
   padding: 6px 8px;
 }
 
@@ -85,10 +75,6 @@ textarea:focus {
 textarea {
   resize: none;
   height: 90px;
-}
-
-p {
-  margin-top: 16px;
 }
 
 li {
@@ -125,6 +111,7 @@ button {
   color: var(--main-color, white);
   background-color: var(--secondary-color, green);
   border: none;
+  margin-top: 18px;
   padding: 12px 0;
   border-radius: 6px;
   font-weight: 700;
@@ -140,6 +127,11 @@ button:hover {
   border: solid 1px var(--border-color, gray);
 }
 
+.rounded_border_error {
+  border-radius: 6px;
+  border: solid 1px var(--error-color, red);
+}
+
 .elem_container {
   display: flex;
   justify-content: space-between;
@@ -150,7 +142,6 @@ button:hover {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 20px;
 
   label {
     margin-bottom: 8px;
@@ -160,7 +151,8 @@ button:hover {
 .checkbox_container {
   display: flex;
   align-items: center;
-  margin: 32px 0;
+  margin-top: 18px;
+  height: 18px;
 
   label {
     margin-left: 14px;
@@ -168,16 +160,51 @@ button:hover {
 
   input {
     margin-left: 4px;
-    transform: scale(1.2);
+    height: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid var(--border-color, gray);
+    padding: 6px;
   }
 
   input:checked {
-    accent-color: var(--button-hover-color, green);
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+    border: 1px solid var(--secondary-color, gray);
+    accent-color: var(--secondary-color, green);
+    margin-left: 5px;
   }
 
   input:hover {
     cursor: pointer;
   }
+}
+
+.checkbox_container_error input {
+  border: 1px solid var(--error-color, red);
+}
+
+.error_message {
+  color: var(--error-color, red);
+  font-size: 13px;
+  font-style: italic;
+  height: 17px;
+  margin-bottom: 3px;
+  margin-left: 4px;
+}
+
+.confirmation_container {
+  margin-top: 96px;
+}
+
+.confirmation {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+  font-size: 20px;
+  text-align: center;
 }
 
 @media (width <= 560px) {
