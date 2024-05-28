@@ -142,6 +142,7 @@ function App() {
                   name="firstName"
                   onChange={(e) => setFirstName(e.target.value)}
                   value={firstName}
+                  maxLength={30}
                 />
                 <p className="error_message">{firstNameValidMsg}</p>
               </div>
@@ -158,6 +159,7 @@ function App() {
                   name="lastName"
                   onChange={(e) => setLastName(e.target.value)}
                   value={lastName}
+                  maxLength={30}
                 />
                 <p className="error_message">{lastNameValidMsg}</p>
               </div>
@@ -228,6 +230,7 @@ function App() {
                 name="message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                maxLength={255}
               ></textarea>
               <p className="error_message">{messageValidMsg}</p>
             </div>
