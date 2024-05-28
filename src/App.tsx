@@ -126,7 +126,7 @@ function App() {
         <section>
           <h1>Contact Us</h1>
           <form onSubmit={handleSubmit} noValidate>
-            <div className="elem_container">
+            <div className="fields_container">
               <div className="input_container">
                 <label htmlFor="firstName">
                   First Name<sup>*</sup>
@@ -183,7 +183,7 @@ function App() {
                 Query Type<sup>*</sup>
               </p>
             </div>
-            <ul className="elem_container">
+            <ul className="fields_container">
               <li
                 className={
                   queryTypeValidMsg ? "rounded_border_error" : "rounded_border"
