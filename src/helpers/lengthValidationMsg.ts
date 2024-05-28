@@ -1,10 +1,13 @@
 // function checking if the text is entered and if it's length is appropriate
-export const lengthValidationMsg = (text: string, qty: number): string => {
+export const lengthValidationMsg = (
+  text: string,
+  minLength: number
+): string => {
   if (text.length < 1) {
     return "This field is required";
   }
-  if (text.length < qty) {
-    return `You need to enter ${qty} characters minimum`;
+  if (text.length < minLength) {
+    return `You need to enter ${minLength} characters minimum`;
   }
   return "";
 };
