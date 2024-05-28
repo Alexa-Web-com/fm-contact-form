@@ -109,11 +109,11 @@ button {
   padding: 12px 0;
   border-radius: 6px;
   font-weight: 700;
-}
 
-button:hover {
-  background-color: var(--button-hover-color, darkgreen);
-  cursor: pointer;
+  &:hover {
+    background-color: var(--button-hover-color, darkgreen);
+    cursor: pointer;
+  }
 }
 
 .rounded_border {
@@ -158,16 +158,16 @@ button:hover {
     border: 1px solid var(--border-color, gray);
     padding: 6px;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &:checked {
       appearance: checkbox;
       border: 1px solid var(--secondary-color, gray);
       accent-color: var(--secondary-color, green);
       margin-left: 5px;
     }
-  }
-
-  input:hover {
-    cursor: pointer;
   }
 }
 
@@ -184,16 +184,16 @@ button:hover {
   margin-left: 4px;
 }
 
-.confirmation_container {
-  margin-top: 96px;
-}
-
 .confirmation {
-  display: flex;
-  justify-content: center;
-  padding: 24px 0;
-  font-size: 20px;
-  text-align: center;
+  margin-top: 96px;
+
+  p {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+    font-size: 20px;
+    text-align: center;
+  }
 }
 
 @media (width <= 560px) {

@@ -117,9 +117,9 @@ function App() {
   return (
     <main>
       {isSubmittedForm ? (
-        <div className="confirmation_container">
+        <div className="confirmation">
           <section>
-            <p className="confirmation">Your request has been submitted!</p>
+            <p>Your request has been submitted!</p>
           </section>
         </div>
       ) : (
