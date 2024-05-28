@@ -65,13 +65,6 @@ textarea {
   padding: 6px 8px;
 }
 
-input:focus,
-input:hover,
-textarea:hover,
-textarea:focus {
-  border: solid 1px var(--secondary-color, green);
-}
-
 textarea {
   resize: none;
   height: 90px;
@@ -99,11 +92,12 @@ li {
   }
 }
 
+input:focus,
+input:hover,
+textarea:hover,
+textarea:focus,
+li:hover,
 li:has(input:checked) {
-  border: solid 1px var(--secondary-color, green);
-}
-
-li:hover {
   border: solid 1px var(--secondary-color, green);
 }
 
@@ -132,7 +126,7 @@ button:hover {
   border: solid 1px var(--error-color, red);
 }
 
-.elem_container {
+.fields_container {
   display: flex;
   justify-content: space-between;
   column-gap: 12px;
@@ -160,20 +154,16 @@ button:hover {
   input {
     margin-left: 4px;
     height: 14px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     border: 1px solid var(--border-color, gray);
     padding: 6px;
-  }
 
-  input:checked {
-    -webkit-appearance: checkbox;
-    -moz-appearance: checkbox;
-    appearance: checkbox;
-    border: 1px solid var(--secondary-color, gray);
-    accent-color: var(--secondary-color, green);
-    margin-left: 5px;
+    &:checked {
+      appearance: checkbox;
+      border: 1px solid var(--secondary-color, gray);
+      accent-color: var(--secondary-color, green);
+      margin-left: 5px;
+    }
   }
 
   input:hover {
