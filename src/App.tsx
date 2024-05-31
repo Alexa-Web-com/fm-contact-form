@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import { isEmailValid } from "./helpers/isEmailValid";
 import { lengthValidationMsg } from "./helpers/lengthValidationMsg";
+import InputField from "./components/InputField";
+import CheckboxField from "./components/CheckboxField";
+import RadioField from "./components/RadioField";
+import TextareaField from "./components/TextareaField";
+import FormFieldWrapper from "./components/FormFieldWrapper";
 
 function App() {
   // initial state setup for form fields
@@ -15,35 +20,13 @@ function App() {
   // initial state setup for error messages for form fields
   const [firstNameValidMsg, setFirstNameValidMsg] = useState<string>("");
   const [lastNameValidMsg, setLastNameValidMsg] = useState<string>("");
-  const [EmailValidMsg, setEmailValidMsg] = useState<string>("");
+  const [emailValidMsg, setEmailValidMsg] = useState<string>("");
   const [queryTypeValidMsg, setQueryTypeValidMsg] = useState<string>("");
   const [messageValidMsg, setMessageValidMsg] = useState<string>("");
   const [consentValidMsg, setConsentValidMsg] = useState<string>("");
 
   // state for checking if the form has been correctly submitted
   const [isSubmittedForm, setIsSubmittedForm] = useState<boolean>(false);
-
-  // hooks clearing error message state when new data is entered or corrected in form fields
-  useEffect(() => {
-    setFirstNameValidMsg("");
-  }, [firstName]);
-  useEffect(() => {
-    setLastNameValidMsg("");
-  }, [lastName]);
-  useEffect(() => {
-    setEmailValidMsg("");
-  }, [email]);
-  useEffect(() => {
-    setQueryTypeValidMsg("");
-  }, [queryType]);
-  useEffect(() => {
-    if (message.length > 5) {
-      setMessageValidMsg("");
-    }
-  }, [message]);
-  useEffect(() => {
-    setConsentValidMsg("");
-  }, [consent]);
 
   // checking if all form fields are correctly filled
   const isFormValid = () => {
@@ -61,7 +44,7 @@ function App() {
     setEmailValidMsg(getEmailValidationMsg);
     setMessageValidMsg(getMessageValidationMsg);
 
-    if (queryType === "") {
+    if (!queryType) {
       setQueryTypeValidMsg("Please choose the query type");
     }
 
@@ -75,7 +58,7 @@ function App() {
       !!getLastNameValidationMsg ||
       !!getEmailValidationMsg ||
       !!getMessageValidationMsg ||
-      queryType === "" ||
+      !queryType ||
       !consent
     ) {
       dataValid = false;
@@ -127,6 +110,97 @@ function App() {
           <h1>Contact Us</h1>
           <form onSubmit={handleSubmit} noValidate>
             <div className="fields_container">
+              <FormFieldWrapper validMsg={firstNameValidMsg}>
+                <InputField
+                  onChangeFunction={(e) => setFirstName(e.target.value)}
+                  value={firstName}
+                  type={"text"}
+                  id={"firstName"}
+                  maxLength={30}
+                  setValidMsg={setFirstNameValidMsg}
+                >
+                  First Name
+                </InputField>
+              </FormFieldWrapper>
+              <FormFieldWrapper validMsg={lastNameValidMsg}>
+                <InputField
+                  onChangeFunction={(e) => setLastName(e.target.value)}
+                  value={lastName}
+                  type={"text"}
+                  id={"lastName"}
+                  maxLength={30}
+                  setValidMsg={setLastNameValidMsg}
+                >
+                  Last Name
+                </InputField>
+              </FormFieldWrapper>
+            </div>
+            <FormFieldWrapper validMsg={emailValidMsg}>
+              <InputField
+                onChangeFunction={(e) => setEmail(e.target.value)}
+                value={email}
+                type={"email"}
+                id={"emailAddress"}
+                setValidMsg={setEmailValidMsg}
+              >
+                Email Address
+              </InputField>
+            </FormFieldWrapper>
+            <FormFieldWrapper validMsg={queryTypeValidMsg}>
+              <>
+                <div>
+                  <p>
+                    Query Type<sup>*</sup>
+                  </p>
+                </div>
+                <ul className="fields_container">
+                  <RadioField
+                    onChangeFunction={(e) => setQueryType(e.target.value)}
+                    value={"General Enquiry"}
+                    id={"generalEnquiry"}
+                    name={"queryType"}
+                    checked={queryType === "General Enquiry"}
+                    setValidMsg={setQueryTypeValidMsg}
+                  >
+                    General Enquiry
+                  </RadioField>
+                  <RadioField
+                    onChangeFunction={(e) => setQueryType(e.target.value)}
+                    value={"Support Request"}
+                    id={"supportRequest"}
+                    name={"queryType"}
+                    checked={queryType === "Support Request"}
+                    setValidMsg={setQueryTypeValidMsg}
+                  >
+                    Support Request
+                  </RadioField>
+                </ul>
+              </>
+            </FormFieldWrapper>
+            <FormFieldWrapper validMsg={messageValidMsg}>
+              <TextareaField
+                onChangeFunction={(e) => setMessage(e.target.value)}
+                value={message}
+                id={"message"}
+                maxLength={255}
+                setValidMsg={setMessageValidMsg}
+              >
+                Message
+              </TextareaField>
+            </FormFieldWrapper>
+            <FormFieldWrapper validMsg={consentValidMsg}>
+              <CheckboxField
+                onChangeFunction={(e) => setConsent(e.target.checked)}
+                id={"consent"}
+                checked={consent}
+                setValidMsg={setConsentValidMsg}
+              >
+                I consent to being contacted by the team
+              </CheckboxField>
+            </FormFieldWrapper>
+
+            {/* old start */}
+            {/* <div className="fields_container">
               <div className="input_container">
                 <label htmlFor="firstName">
                   First Name<sup>*</sup>
@@ -170,7 +244,7 @@ function App() {
               </label>
               <input
                 className={
-                  EmailValidMsg ? "rounded_border_error" : "rounded_border"
+                  emailValidMsg ? "rounded_border_error" : "rounded_border"
                 }
                 type="email"
                 id="emailAddress"
@@ -178,7 +252,7 @@ function App() {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
               />
-              <p className="error_message">{EmailValidMsg}</p>
+              <p className="error_message">{emailValidMsg}</p>
             </div>
             <div>
               <p>
@@ -253,7 +327,9 @@ function App() {
                 I consent to being contacted by the team<sup>*</sup>
               </label>
             </div>
-            <p className="error_message">{consentValidMsg}</p>
+            <p className="error_message">{consentValidMsg}</p> */}
+            {/* old end */}
+
             <button type="submit">Submit</button>
           </form>
         </section>

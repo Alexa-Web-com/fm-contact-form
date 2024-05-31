@@ -4,7 +4,9 @@ export const isEmailValid = (email: string): string => {
     return "This field is required";
   }
 
-  if (!/\S+@\S+\.\S+/.test(email)) return "Please enter a valid email address";
+  if (!/\S+@\S+\.\S+/.test(email)) {
+    return "Please enter a valid email address";
+  }
 
   return "";
 };
