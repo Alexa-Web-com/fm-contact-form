@@ -81,6 +81,10 @@ li {
   padding-left: 16px;
   margin: 10px 0 0 0;
 
+  &:has(input:checked) {
+    border: solid 1px var(--secondary-color, green);
+  }
+
   label {
     font-size: 16px;
     padding-left: 10px;
@@ -93,15 +97,6 @@ li {
   input:checked {
     accent-color: var(--secondary-color, green);
   }
-}
-
-input:focus,
-input:hover,
-textarea:hover,
-textarea:focus,
-li:hover,
-li:has(input:checked) {
-  border: solid 1px var(--secondary-color, green);
 }
 
 button {
@@ -143,6 +138,10 @@ input:-webkit-autofill:focus {
 
 .border :is(input, textarea, li) {
   border: solid 1px var(--border-color, gray);
+  &:hover,
+  &:focus {
+    border: solid 1px var(--secondary-color, green);
+  }
 }
 
 .border_error :is(input, textarea, li) {
