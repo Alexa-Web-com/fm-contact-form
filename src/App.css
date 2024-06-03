@@ -119,6 +119,12 @@ button {
   }
 }
 
+.fields_container {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 12px;
+}
+
 /* overriding 'input:-internal-autofill-selected' styles */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -127,28 +133,20 @@ input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 40rem var(--main-color, white) inset;
 }
 
-.border :is(input[type="text"], input[type="email"], textarea, li) {
-  border-radius: 6px;
+.border,
+.border_error {
+  width: 100%;
+  :not(input[type="checkbox"]) {
+    border-radius: 6px;
+  }
+}
+
+.border :is(input, textarea, li) {
   border: solid 1px var(--border-color, gray);
 }
 
-.border_error :is(input[type="text"], input[type="email"], textarea, li) {
-  border-radius: 6px;
+.border_error :is(input, textarea, li) {
   border: solid 1px var(--error-color, red);
-}
-
-.border_error :is(input[type="checkbox"]) {
-  border: solid 1px var(--error-color, red);
-}
-
-.fields_container {
-  display: flex;
-  justify-content: space-between;
-  column-gap: 12px;
-}
-
-.form_field_container {
-  width: 100%;
 }
 
 .input_container {
@@ -173,7 +171,6 @@ input:-webkit-autofill:focus {
     margin-left: 4px;
     height: 14px;
     appearance: none;
-    border: 1px solid var(--border-color, gray);
     padding: 6px;
 
     &:hover {
