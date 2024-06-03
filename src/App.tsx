@@ -7,6 +7,7 @@ import CheckboxField from "./components/CheckboxField";
 import RadioField from "./components/RadioField";
 import TextareaField from "./components/TextareaField";
 import FormFieldWrapper from "./components/FormFieldWrapper";
+import RadioFieldWrapper from "./components/RadioFieldWrapper";
 
 function App() {
   // initial state setup for form fields
@@ -153,14 +154,16 @@ function App() {
                     Query Type<sup>*</sup>
                   </p>
                 </div>
-                <ul className="fields_container">
+                <RadioFieldWrapper
+                  value={queryType}
+                  setValidMsg={setQueryTypeValidMsg}
+                >
                   <RadioField
                     onChangeFunction={(e) => setQueryType(e.target.value)}
                     value={"General Enquiry"}
                     id={"generalEnquiry"}
                     name={"queryType"}
                     checked={queryType === "General Enquiry"}
-                    setValidMsg={setQueryTypeValidMsg}
                   >
                     General Enquiry
                   </RadioField>
@@ -170,11 +173,10 @@ function App() {
                     id={"supportRequest"}
                     name={"queryType"}
                     checked={queryType === "Support Request"}
-                    setValidMsg={setQueryTypeValidMsg}
                   >
                     Support Request
                   </RadioField>
-                </ul>
+                </RadioFieldWrapper>
               </>
             </FormFieldWrapper>
             <FormFieldWrapper validMsg={messageValidMsg}>

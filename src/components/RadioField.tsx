@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { RadioFieldType } from "../helpers/types";
 
 const RadioField = ({
@@ -8,13 +7,7 @@ const RadioField = ({
   name,
   checked,
   children,
-  setValidMsg,
 }: RadioFieldType) => {
-  // hook clearing error message state when new data is entered or corrected in form field
-  useEffect(() => {
-    setValidMsg("");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
   return (
     <>
       <li>
