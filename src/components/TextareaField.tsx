@@ -28,7 +28,7 @@ const TextareaField = ({
         onChange={onChangeFunction}
         value={value}
         maxLength={maxLength}
-      />
+      ></textarea>
     </div>
   );
 };
