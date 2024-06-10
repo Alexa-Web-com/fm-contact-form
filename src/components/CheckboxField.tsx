@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { CheckboxFieldType } from "../helpers/types";
+import Asterisk from "./Asterisk";
 
 const CheckboxField = ({
   onChangeFunction,
@@ -26,7 +27,7 @@ const CheckboxField = ({
         />
         <label htmlFor={id}>
           {children}
-          <sup>*</sup>
+          <Asterisk />
         </label>
       </div>
     </>

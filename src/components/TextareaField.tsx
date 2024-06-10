@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { TextareaFieldType } from "../helpers/types";
+import Asterisk from "./Asterisk";
 
 const TextareaField = ({
   onChangeFunction,
@@ -20,7 +21,7 @@ const TextareaField = ({
     <div className="input_container">
       <label htmlFor={id}>
         {children}
-        <sup>*</sup>
+        <Asterisk />
       </label>
       <textarea
         id={id}

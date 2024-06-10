@@ -171,36 +171,29 @@ function App() {
               </InputField>
             </FormFieldWrapper>
             <FormFieldWrapper validMsg={queryTypeValidMsg}>
-              <>
-                <div>
-                  <p>
-                    Query Type<sup>*</sup>
-                  </p>
-                </div>
-                <RadioFieldWrapper
-                  value={queryType}
-                  setValidMsg={setQueryTypeValidMsg}
+              <RadioFieldWrapper
+                value={queryType}
+                setValidMsg={setQueryTypeValidMsg}
+              >
+                <RadioField
+                  onChangeFunction={(e) => setQueryType(e.target.value)}
+                  value={"General Enquiry"}
+                  id={"generalEnquiry"}
+                  name={"queryType"}
+                  checked={queryType === "General Enquiry"}
                 >
-                  <RadioField
-                    onChangeFunction={(e) => setQueryType(e.target.value)}
-                    value={"General Enquiry"}
-                    id={"generalEnquiry"}
-                    name={"queryType"}
-                    checked={queryType === "General Enquiry"}
-                  >
-                    General Enquiry
-                  </RadioField>
-                  <RadioField
-                    onChangeFunction={(e) => setQueryType(e.target.value)}
-                    value={"Support Request"}
-                    id={"supportRequest"}
-                    name={"queryType"}
-                    checked={queryType === "Support Request"}
-                  >
-                    Support Request
-                  </RadioField>
-                </RadioFieldWrapper>
-              </>
+                  General Enquiry
+                </RadioField>
+                <RadioField
+                  onChangeFunction={(e) => setQueryType(e.target.value)}
+                  value={"Support Request"}
+                  id={"supportRequest"}
+                  name={"queryType"}
+                  checked={queryType === "Support Request"}
+                >
+                  Support Request
+                </RadioField>
+              </RadioFieldWrapper>
             </FormFieldWrapper>
             <FormFieldWrapper validMsg={messageValidMsg}>
               <TextareaField

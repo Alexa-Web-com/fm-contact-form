@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { RadioFieldsWrapperType } from "../helpers/types";
+import Asterisk from "./Asterisk";
 
 const RadioFieldWrapper = ({
   children,
@@ -11,7 +12,15 @@ const RadioFieldWrapper = ({
     setValidMsg("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
-  return <ul className="fields_container">{children}</ul>;
+  return (
+    <>
+      <p>
+        Query Type
+        <Asterisk />
+      </p>
+      <ul className="fields_container">{children}</ul>
+    </>
+  );
 };
 
 export default RadioFieldWrapper;

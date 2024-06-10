@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import "../App.css";
 import { InputFieldType } from "../helpers/types";
+import Asterisk from "./Asterisk";
 
 const InputField = ({
   onChangeFunction,
@@ -20,7 +21,7 @@ const InputField = ({
     <div className="input_container">
       <label htmlFor={id}>
         {children}
-        <sup>*</sup>
+        <Asterisk />
       </label>
       <input
         type={type}
