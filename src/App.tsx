@@ -29,6 +29,11 @@ function App() {
   // state for checking if the form has been correctly submitted
   const [isSubmittedForm, setIsSubmittedForm] = useState<boolean>(false);
 
+  // state for object with data sent via form
+  const [dataToSend, setDataToSend] = useState<{
+    [key: string]: { label: string; data: string };
+  }>({});
+
   // checking if all form fields are correctly filled
   const isFormValid = () => {
     let dataValid = true;
@@ -76,6 +81,16 @@ function App() {
       return;
     }
 
+    setDataToSend((prevState) => ({
+      ...prevState,
+      firstName: { label: "First Name", data: firstName },
+      lastName: { label: "Last Name", data: lastName },
+      email: { label: "Email Address", data: email },
+      queryType: { label: "Query Type", data: queryType },
+      message: { label: "Message", data: message },
+      consent: { label: "Consent", data: "Yes" },
+    }));
+
     showConfirmation();
     clearForm();
   };
@@ -85,7 +100,7 @@ function App() {
     setIsSubmittedForm(true);
     setTimeout(() => {
       setIsSubmittedForm(false);
-    }, 1200);
+    }, 2000);
   };
 
   // function clearing the form
@@ -103,7 +118,15 @@ function App() {
       {isSubmittedForm ? (
         <div className="confirmation">
           <section>
-            <p>Your request has been submitted!</p>
+            <p className="thanks_note">Your request has been submitted!</p>
+            <div className="data_confirmation">
+              <p className="title">Your data:</p>
+              {Object.values(dataToSend).map((value, index) => (
+                <p className="details" key={index}>
+                  <span className="label">{value.label}:</span> {value.data}
+                </p>
+              ))}
+            </div>
           </section>
         </div>
       ) : (

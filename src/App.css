@@ -197,12 +197,33 @@ input:-webkit-autofill:focus {
 .confirmation {
   margin-top: 96px;
 
-  p {
+  .thanks_note {
     display: flex;
     justify-content: center;
     padding: 24px 0;
     font-size: 20px;
     text-align: center;
+  }
+
+  .data_confirmation {
+    border: 1px solid var(--secondary-color, green);
+    padding: 20px;
+    border-radius: 12px;
+
+    .title {
+      margin-bottom: 20px;
+      font-size: 20px;
+      text-decoration: underline;
+    }
+
+    .details {
+      font-size: 18px;
+      color: var(--secondary-color, green);
+
+      .label {
+        font-weight: bold;
+      }
+    }
   }
 }
 
