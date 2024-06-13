@@ -29,12 +29,12 @@ function App() {
   // state for checking if the form has been correctly submitted
   const [isSubmittedForm, setIsSubmittedForm] = useState<boolean>(false);
 
-  // state for object with data sent via form
+  //  state for request body and for submission confirmation details
   const [dataToSend, setDataToSend] = useState<{
     [key: string]: { label: string; data: string };
   }>({});
 
-  // checking if all form fields are correctly filled
+  /** a function which checks if all form fields are correctly filled */
   const isFormValid = () => {
     let dataValid = true;
 
@@ -73,7 +73,7 @@ function App() {
     return dataValid;
   };
 
-  // function handling the form submission
+  /** function handling the form submission */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -95,7 +95,7 @@ function App() {
     clearForm();
   };
 
-  // function changing the isSubmittedForm state in order to show confirmation of successful form submission
+  /** function changing the isSubmittedForm state in order to show confirmation of successful form submission */
   const showConfirmation = () => {
     setIsSubmittedForm(true);
     setTimeout(() => {
@@ -103,7 +103,7 @@ function App() {
     }, 2000);
   };
 
-  // function clearing the form
+  /** function clearing the form */
   const clearForm = () => {
     setFirstName("");
     setLastName("");
