@@ -228,7 +228,7 @@ input:-webkit-autofill:focus {
 }
 
 @media (width <= 560px) {
-  .elem_container {
+  .fields_container {
     flex-direction: column;
     row-gap: 2px;
   }
