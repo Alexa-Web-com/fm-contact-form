@@ -134,47 +134,57 @@ function App() {
           <h1>Contact Us</h1>
           <form onSubmit={handleSubmit} noValidate>
             <div className="fields_container">
-              <FormFieldWrapper validMsg={firstNameValidMsg}>
+              <FormFieldWrapper
+                validMsg={firstNameValidMsg}
+                clearValidMsgInitiator={firstName}
+                setValidMsg={setFirstNameValidMsg}
+              >
                 <InputField
                   onChangeFunction={(e) => setFirstName(e.target.value)}
                   value={firstName}
                   type={"text"}
                   id={"firstName"}
                   maxLength={30}
-                  setValidMsg={setFirstNameValidMsg}
                 >
                   First Name
                 </InputField>
               </FormFieldWrapper>
-              <FormFieldWrapper validMsg={lastNameValidMsg}>
+              <FormFieldWrapper
+                validMsg={lastNameValidMsg}
+                clearValidMsgInitiator={lastName}
+                setValidMsg={setLastNameValidMsg}
+              >
                 <InputField
                   onChangeFunction={(e) => setLastName(e.target.value)}
                   value={lastName}
                   type={"text"}
                   id={"lastName"}
                   maxLength={30}
-                  setValidMsg={setLastNameValidMsg}
                 >
                   Last Name
                 </InputField>
               </FormFieldWrapper>
             </div>
-            <FormFieldWrapper validMsg={emailValidMsg}>
+            <FormFieldWrapper
+              validMsg={emailValidMsg}
+              clearValidMsgInitiator={email}
+              setValidMsg={setEmailValidMsg}
+            >
               <InputField
                 onChangeFunction={(e) => setEmail(e.target.value)}
                 value={email}
                 type={"email"}
                 id={"emailAddress"}
-                setValidMsg={setEmailValidMsg}
               >
                 Email Address
               </InputField>
             </FormFieldWrapper>
-            <FormFieldWrapper validMsg={queryTypeValidMsg}>
-              <RadioFieldWrapper
-                value={queryType}
-                setValidMsg={setQueryTypeValidMsg}
-              >
+            <FormFieldWrapper
+              validMsg={queryTypeValidMsg}
+              clearValidMsgInitiator={queryType}
+              setValidMsg={setQueryTypeValidMsg}
+            >
+              <RadioFieldWrapper>
                 <RadioField
                   onChangeFunction={(e) => setQueryType(e.target.value)}
                   value={"General Enquiry"}
@@ -195,23 +205,29 @@ function App() {
                 </RadioField>
               </RadioFieldWrapper>
             </FormFieldWrapper>
-            <FormFieldWrapper validMsg={messageValidMsg}>
+            <FormFieldWrapper
+              validMsg={messageValidMsg}
+              clearValidMsgInitiator={message}
+              setValidMsg={setMessageValidMsg}
+            >
               <TextareaField
                 onChangeFunction={(e) => setMessage(e.target.value)}
                 value={message}
                 id={"message"}
                 maxLength={255}
-                setValidMsg={setMessageValidMsg}
               >
                 Message
               </TextareaField>
             </FormFieldWrapper>
-            <FormFieldWrapper validMsg={consentValidMsg}>
+            <FormFieldWrapper
+              validMsg={consentValidMsg}
+              clearValidMsgInitiator={consent}
+              setValidMsg={setConsentValidMsg}
+            >
               <CheckboxField
                 onChangeFunction={(e) => setConsent(e.target.checked)}
                 id={"consent"}
                 checked={consent}
-                setValidMsg={setConsentValidMsg}
               >
                 I consent to being contacted by the team
               </CheckboxField>

@@ -1,9 +1,18 @@
-interface IFormFieldWrapper {
-  children: JSX.Element;
-  validMsg: string;
-}
+import { useEffect } from "react";
+import { FormFieldWrapperType } from "../helpers/types";
 
-const FormFieldWrapper = ({ children, validMsg }: IFormFieldWrapper) => {
+const FormFieldWrapper = ({
+  children,
+  validMsg,
+  clearValidMsgInitiator,
+  setValidMsg,
+}: FormFieldWrapperType) => {
+  // hook clearing error message state when new data is entered or corrected in form field
+  useEffect(() => {
+    setValidMsg("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clearValidMsgInitiator]);
+
   const borderClass = validMsg ? "border_error" : "border";
 
   return (
