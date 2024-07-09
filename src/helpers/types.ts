@@ -1,5 +1,18 @@
 import { ReactNode } from "react";
 
+export type DataToSendType = {
+  [key: string]: {
+    label: string;
+    data: string;
+  };
+};
+
+export type FormType = {
+  setIsSubmittedForm: React.Dispatch<React.SetStateAction<boolean>>;
+  setDataToSend: React.Dispatch<React.SetStateAction<DataToSendType>>;
+  key: string;
+};
+
 export type FormFieldWrapperType = {
   children: JSX.Element;
   validMsg: string;
