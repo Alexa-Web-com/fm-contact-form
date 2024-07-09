@@ -1,4 +1,3 @@
-import "../App.css";
 import { InputFieldType } from "../helpers/types";
 import Asterisk from "./Asterisk";
 

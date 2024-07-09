@@ -1,4 +1,3 @@
-// import { useEffect } from "react";
 import { CheckboxFieldType } from "../helpers/types";
 import Asterisk from "./Asterisk";
 
